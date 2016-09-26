@@ -3,8 +3,7 @@
 ## TODO
 * decent README
 
-License
--------
+## License
 
     Copyright 2016 Alexey Mileev
 
