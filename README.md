@@ -1,5 +1,8 @@
 # kakava
 
+## TODO
+* decent README
+
 License
 -------
 
