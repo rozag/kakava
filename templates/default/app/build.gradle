@@ -1,0 +1,82 @@
+apply plugin: "com.android.application"
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        applicationId "${packageName}"
+
+        minSdkVersion minSdk
+        targetSdkVersion targetSdk
+
+        versionCode majorAppVersion * 10000 + minorAppVersion * 1000 + patchAppVersion * 100 + buildAppVersion
+        versionName "${majorAppVersion}.${minorAppVersion}.${patchAppVersion}"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            jniDebuggable true
+            renderscriptDebuggable true
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
+            applicationIdSuffix ".debug"
+        }
+
+        release {
+            minifyEnabled true
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    lintOptions {
+        textReport true
+        textOutput "stdout"
+        fatal "UnusedResources"
+        warningsAsErrors true
+        abortOnError true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude "META-INF/NOTICE"
+        exclude "META-INF/NOTICE.txt"
+        exclude "META-INF/LICENSE"
+        exclude "META-INF/LICENSE.txt"
+        exclude "META-INF/services/javax.annotation.processing.Processor"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "3g"
+        jumboMode = true
+    }
+}
+
+dependencies {
+    // JUnit testing dependencies
+    testCompile "junit:junit:4.12"
+
+    // Android testing dependencies
+    androidTestCompile "junit:junit:4.12"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
+        exclude group: "com.android.support", module: "support-annotations"
+    })
+
+    // Android support library
+    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+
+    // Your dependencies go here...
+}
