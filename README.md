@@ -1,4 +1,5 @@
 # kakava
+Customizable Android app template generator.
 
 ## TODO
 * decent README
