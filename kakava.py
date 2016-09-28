@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-from os.path import realpath, isdir, join
+from os.path import realpath, basename, isdir, join
 import argparse
+from shutil import copytree
 
 
 class AppConfig:
@@ -41,9 +42,12 @@ if __name__ == '__main__':
     # Parse CL arguments
     app_config = parse_args()
 
-    # Copy template folder to args.destination/args.name/
-    # TODO implement
-    print('kakava script path:', realpath(__file__))
+    # Copy template folder to app_config.destination/app_config.name
+    script_dir_path = realpath(__file__).replace(basename(__file__), '')
+    templates_dir_path = join(script_dir_path, 'templates')
+    destination_path = join(app_config.destination, app_config.name)
+    default_template_path = join(templates_dir_path, 'default')
+    copytree(default_template_path, destination_path)
 
     # Create directories by splitting args.package
     # TODO implement
