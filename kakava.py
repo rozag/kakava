@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from os.path import realpath, basename, isdir, join
-from os import makedirs, listdir, rmdir
+from os import makedirs, listdir, rmdir, walk
 import argparse
 from shutil import copytree, move
 
@@ -59,9 +59,28 @@ def create_package_structure(proj_path, code_path, package):
 
     # Move root/ content one level up and delete root/
     root_dir_path = join(package_path, 'root')
-    for filename in listdir(root_dir_path):
-        move(join(package_path, 'root', filename), join(package_path, filename))
+    for name in listdir(root_dir_path):
+        move(join(package_path, 'root', name), join(package_path, name))
     rmdir(root_dir_path)
+
+
+def replace_word_in_file(name, word, replacement):
+    with open(name, 'r', encoding='utf-8') as file_read:
+        lines = ''.join(file_read.readlines())
+        lines = lines.replace(word, replacement)
+        with open(name, 'w', encoding='utf-8') as file_write:
+            file_write.write(lines)
+
+
+def replace_variables_in_file(name, app_cfg):
+    replace_word_in_file(name, '${packageName}', app_cfg.package)
+    replace_word_in_file(name, '${appName}', app_cfg.name)
+
+
+def is_source_code_file(name):
+    return name.endswith('.java') or \
+           name.endswith('.xml') or \
+           name.endswith('.gradle')
 
 
 if __name__ == '__main__':
@@ -71,22 +90,25 @@ if __name__ == '__main__':
     # Copy template folder to app_config.destination/app_config.name
     script_dir_path = realpath(__file__).replace(basename(__file__), '')
     templates_dir_path = join(script_dir_path, 'templates')
-    destination_path = join(app_config.destination, app_config.name)
+    project_path = join(app_config.destination, app_config.name)
     default_template_path = join(templates_dir_path, 'default')
-    copytree(default_template_path, destination_path)
+    copytree(default_template_path, project_path)
 
     # Create directories by splitting app_config.package
-    atest_path = path_from_dirs_list(['app', 'src', 'androidTest', 'java'])
-    create_package_structure(destination_path, atest_path, app_config.package)
+    droid_test_path = path_from_dirs_list(['app', 'src', 'androidTest', 'java'])
+    create_package_structure(project_path, droid_test_path, app_config.package)
 
     main_path = path_from_dirs_list(['app', 'src', 'main', 'java'])
-    create_package_structure(destination_path, main_path, app_config.package)
+    create_package_structure(project_path, main_path, app_config.package)
 
     test_path = path_from_dirs_list(['app', 'src', 'test', 'java'])
-    create_package_structure(destination_path, test_path, app_config.package)
+    create_package_structure(project_path, test_path, app_config.package)
 
     # Change ${...} variables in source files according to given options
-    # TODO implement
+    for root, directories, filenames in walk(project_path):
+        for filename in filenames:
+            if is_source_code_file(filename):
+                replace_variables_in_file(join(root, filename), app_config)
 
-    project_path = join(app_config.destination, app_config.name)
+    # Success message
     print(app_config.package, 'project successfully created in', project_path)
