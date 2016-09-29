@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 from os.path import realpath, basename, isdir, join
+from os import makedirs, listdir, rmdir
 import argparse
-from shutil import copytree
+from shutil import copytree, move
 
 
 class AppConfig:
@@ -16,6 +17,7 @@ class AppConfig:
         if name:
             self.name = name
         else:
+            # If KakavaApp/ exists create KakavaApp1/ and so on...
             default_name = 'KakavaApp'
             number = ''
             i = 1
@@ -37,8 +39,32 @@ def parse_args():
     return AppConfig(args.destination, args.package, args.name)
 
 
+def path_from_dirs_list(dirs):
+    path = dirs[0]
+    for i in range(1, len(dirs)):
+        path = join(path, dirs[i])
+    return path
+
+
+def create_package_structure(proj_path, code_path, package):
+    # Create dir structure from package (com.example.app -> com/example/app)
+    path = join(proj_path, code_path)
+    dirs = package.split('.')
+    dirs_to_create = path_from_dirs_list(dirs)
+    package_path = join(path, dirs_to_create)
+    makedirs(package_path, exist_ok=True)
+
+    # Move root package into new structure (com/example/app/root)
+    move(join(path, 'root'), package_path)
+
+    # Move root/ content one level up and delete root/
+    root_dir_path = join(package_path, 'root')
+    for filename in listdir(root_dir_path):
+        move(join(package_path, 'root', filename), join(package_path, filename))
+    rmdir(root_dir_path)
+
+
 if __name__ == '__main__':
-    # TODO test
     # Parse CL arguments
     app_config = parse_args()
 
@@ -49,8 +75,15 @@ if __name__ == '__main__':
     default_template_path = join(templates_dir_path, 'default')
     copytree(default_template_path, destination_path)
 
-    # Create directories by splitting args.package
-    # TODO implement
+    # Create directories by splitting app_config.package
+    atest_path = path_from_dirs_list(['app', 'src', 'androidTest', 'java'])
+    create_package_structure(destination_path, atest_path, app_config.package)
+
+    main_path = path_from_dirs_list(['app', 'src', 'main', 'java'])
+    create_package_structure(destination_path, main_path, app_config.package)
+
+    test_path = path_from_dirs_list(['app', 'src', 'test', 'java'])
+    create_package_structure(destination_path, test_path, app_config.package)
 
     # Change ${...} variables in source files according to given options
     # TODO implement
