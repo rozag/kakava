@@ -1,8 +1,48 @@
 # kakava
-Customizable Android app template generator.
+Customizable Android app template generator. This tool allows you to generate a well-tuned Android project.
 
-## TODO
-* decent README
+## Motivations
+I've noticed that I spend ~15 minutes each time, when I need to create and set up a project for a new app or a prototype. Well, need to do a task more than once? Automate it! So, meet kakava!
+
+## Requirements
+* python 3
+
+## Download
+Clone the repo:
+```
+git clone https://github.com/rozag/kakava.git YOUR_PATH/kakava
+```
+For convenience add it to your PATH. Put it to your `~/.bashrc`:
+```
+PATH=YOUR_PATH/kakava:$PATH
+```
+
+## Sample usage
+* Quick start
+```
+kakava NEW_PROJECT_PATH
+```
+* Custom package and app name
+```
+kakava NEW_PROJECT_PATH -n MyApp -p com.example.app
+```
+* `kakava -h`
+```
+usage: kakava [-h] [-p PACKAGE] [-n NAME] destination
+
+positional arguments:
+  destination           output directory for the app
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p PACKAGE, --package PACKAGE
+                        package name, e.g. com.example.app
+  -n NAME, --name NAME  app name, e.g. MyApp
+```
+
+## TODO (PR welcome)
+* Better custom templates support
+* Kotlin project template
 
 ## License
 
