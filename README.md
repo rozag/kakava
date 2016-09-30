@@ -26,6 +26,9 @@ kakava NEW_PROJECT_PATH
 ```
 kakava NEW_PROJECT_PATH -n MyApp -p com.example.app
 ```
+* Open it with AndroidStudio Import project option
+
+![](static/android_studio_import.png)
 * `kakava -h`
 ```
 usage: kakava [-h] [-p PACKAGE] [-n NAME] destination
