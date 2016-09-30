@@ -1,5 +1,5 @@
 # kakava
-Customizable Android app template generator. This tool allows you to generate a well-tuned Android project.
+Customizable Android app template generator. This tool allows you to generate an empty Android project with default/your own template. Checkout the templates/default/ for more info.
 
 ## Motivations
 I've noticed that I spend ~15 minutes each time, when I need to create and set up a project for a new app or a prototype. Well, need to do a task more than once? Automate it! So, meet kakava!
