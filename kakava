@@ -88,7 +88,8 @@ if __name__ == '__main__':
     app_config = parse_args()
 
     # Copy template folder to app_config.destination/app_config.name
-    script_dir_path = realpath(__file__).replace(basename(__file__), '')
+    script_path = realpath(__file__)
+    script_dir_path = script_path[: script_path.rfind(basename(__file__))]
     templates_dir_path = join(script_dir_path, 'templates')
     project_path = join(app_config.destination, app_config.name)
     default_template_path = join(templates_dir_path, 'default')
