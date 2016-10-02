@@ -44,6 +44,7 @@ optional arguments:
 ```
 
 ## TODO (PR welcome)
+* README file for the default template
 * Better custom templates support
 * Kotlin project template
 
