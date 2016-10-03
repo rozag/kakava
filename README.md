@@ -47,6 +47,8 @@ optional arguments:
 * README file for the default template
 * Better custom templates support
 * Kotlin project template
+* Writing custom templates tutorial
+* Currently supported ${variables} list
 
 ## License
 
