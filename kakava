@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from os.path import realpath, basename, isdir, join
-from os import makedirs, listdir, rmdir, walk
+from os import makedirs, listdir, rmdir, walk, rename
 import argparse
 from shutil import copytree, move
 
@@ -77,12 +77,6 @@ def replace_variables_in_file(name, app_cfg):
     replace_word_in_file(name, '${appName}', app_cfg.name)
 
 
-def is_source_code_file(name):
-    return name.endswith('.java') or \
-           name.endswith('.xml') or \
-           name.endswith('.gradle')
-
-
 if __name__ == '__main__':
     # Parse CL arguments
     app_config = parse_args()
@@ -108,8 +102,12 @@ if __name__ == '__main__':
     # Change ${...} variables in source files according to given options
     for root, directories, filenames in walk(project_path):
         for filename in filenames:
-            if is_source_code_file(filename):
-                replace_variables_in_file(join(root, filename), app_config)
+            if filename.endswith('.kakava'):
+                file_path = join(root, filename)
+                replace_variables_in_file(file_path, app_config)
+                filename_without_postfix = filename[: filename.rfind('.kakava')]
+                new_file_path = join(root, filename_without_postfix)
+                rename(file_path, new_file_path)
 
     # Success message
     print(app_config.package, 'project successfully created in', project_path)
