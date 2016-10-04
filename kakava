@@ -62,12 +62,12 @@ def create_package_structure(proj_path, code_path, package):
     makedirs(package_path, exist_ok=True)
 
     # Move root package into new structure (com/example/app/root)
-    move(join(path, 'root'), package_path)
+    move(join(path, 'kakavaroot'), package_path)
 
     # Move root/ content one level up and delete root/
-    root_dir_path = join(package_path, 'root')
+    root_dir_path = join(package_path, 'kakavaroot')
     for name in listdir(root_dir_path):
-        move(join(package_path, 'root', name), join(package_path, name))
+        move(join(package_path, 'kakavaroot', name), join(package_path, name))
     rmdir(root_dir_path)
 
 
