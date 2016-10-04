@@ -14,30 +14,33 @@ git clone https://github.com/rozag/kakava.git YOUR_PATH/kakava
 ```
 For convenience add it to your PATH. Put it to your `~/.bashrc`:
 ```
-PATH=YOUR_PATH/kakava:$PATH
+PATH=$PATH:YOUR_PATH/kakava
 ```
 
 ## Sample usage
+* Super quick start (default project in current directory)
+```
+kakava
+```
 * Quick start
 ```
-kakava NEW_PROJECT_PATH
+kakava -d NEW_PROJECT_PATH
 ```
 * Custom package and app name
 ```
-kakava NEW_PROJECT_PATH -n MyApp -p com.example.app
+kakava -d NEW_PROJECT_PATH -n MyApp -p com.example.app
 ```
 * Open it with AndroidStudio Import project option
 
 ![](static/android_studio_import.png)
 * `kakava -h`
 ```
-usage: kakava [-h] [-p PACKAGE] [-n NAME] [-t TEMPLATE] destination
-
-positional arguments:
-  destination           output directory for the app
+usage: kakava [-h] [-d DESTINATION] [-p PACKAGE] [-n NAME] [-t TEMPLATE]
 
 optional arguments:
   -h, --help            show this help message and exit
+  -d DESTINATION, --destination DESTINATION
+                        output directory for the app
   -p PACKAGE, --package PACKAGE
                         package name, e.g. com.example.app
   -n NAME, --name NAME  app name, e.g. MyApp

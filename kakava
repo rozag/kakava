@@ -1,13 +1,17 @@
 #!/usr/bin/python3
-from os.path import realpath, basename, isdir, join
-from os import makedirs, listdir, rmdir, walk, rename
 import argparse
+from os import makedirs, listdir, rmdir, walk, rename, getcwd
+from os.path import realpath, basename, isdir, join
 from shutil import copytree, move
 
 
 class AppConfig:
-    def __init__(self, destination, package=None, name=None, template=None):
-        self.destination = destination
+    def __init__(self, destination=None, package=None, name=None,
+                 template=None):
+        if destination:
+            self.destination = destination
+        else:
+            self.destination = getcwd()
 
         if package:
             self.package = package
@@ -21,7 +25,7 @@ class AppConfig:
             default_name = 'KakavaApp'
             number = ''
             i = 1
-            while isdir(join(destination, default_name + number)):
+            while isdir(join(self.destination, default_name + number)):
                 number = str(i)
                 i += 1
 
@@ -35,7 +39,7 @@ class AppConfig:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('destination',
+    parser.add_argument('-d', '--destination',
                         help='output directory for the app')
     parser.add_argument('-p', '--package',
                         help='package name, e.g. com.example.app')
@@ -46,29 +50,27 @@ def parse_args():
     return AppConfig(args.destination, args.package, args.name, args.template)
 
 
-def path_from_dirs_list(dirs):
-    path = dirs[0]
-    for i in range(1, len(dirs)):
-        path = join(path, dirs[i])
-    return path
-
-
-def create_package_structure(proj_path, code_path, package):
-    # Create dir structure from package (com.example.app -> com/example/app)
-    path = join(proj_path, code_path)
+def create_package_structure(kakavaroot_path, package):
+    # Get directories for creation from package
     dirs = package.split('.')
-    dirs_to_create = path_from_dirs_list(dirs)
-    package_path = join(path, dirs_to_create)
+    dirs_to_create = dirs[0]
+    for i in range(1, len(dirs)):
+        dirs_to_create = join(dirs_to_create, dirs[i])
+
+    # Create dir structure from package (com.example.app -> com/example/app)
+    kakavaroot_index = kakavaroot_path.rfind('kakavaroot')
+    kakavaroot_parent_path = kakavaroot_path[: kakavaroot_index]
+    package_path = join(kakavaroot_parent_path, dirs_to_create)
     makedirs(package_path, exist_ok=True)
 
-    # Move root package into new structure (com/example/app/root)
-    move(join(path, 'kakavaroot'), package_path)
+    # Move kakavaroot package into new structure (com/example/app/kakavaroot)
+    move(kakavaroot_path, package_path)
 
-    # Move root/ content one level up and delete root/
-    root_dir_path = join(package_path, 'kakavaroot')
-    for name in listdir(root_dir_path):
+    # Move kakavaroot/ content one level up and delete kakavaroot/
+    kakavaroot_path = join(package_path, 'kakavaroot')
+    for name in listdir(kakavaroot_path):
         move(join(package_path, 'kakavaroot', name), join(package_path, name))
-    rmdir(root_dir_path)
+    rmdir(kakavaroot_path)
 
 
 def replace_word_in_file(name, word, replacement):
@@ -97,14 +99,12 @@ if __name__ == '__main__':
     copytree(default_template_path, project_path)
 
     # Create directories by splitting app_config.package
-    droid_test_path = path_from_dirs_list(['app', 'src', 'androidTest', 'java'])
-    create_package_structure(project_path, droid_test_path, app_config.package)
-
-    main_path = path_from_dirs_list(['app', 'src', 'main', 'java'])
-    create_package_structure(project_path, main_path, app_config.package)
-
-    test_path = path_from_dirs_list(['app', 'src', 'test', 'java'])
-    create_package_structure(project_path, test_path, app_config.package)
+    # (kakavaroot/ -> com/example/app)
+    for root, directories, filenames in walk(project_path):
+        for directory in directories:
+            dir_path = join(root, directory)
+            if directory == 'kakavaroot' and isdir(dir_path):
+                create_package_structure(dir_path, app_config.package)
 
     # Change ${...} variables in source files according to given options
     for root, directories, filenames in walk(project_path):
