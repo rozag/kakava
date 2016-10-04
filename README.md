@@ -31,7 +31,7 @@ kakava NEW_PROJECT_PATH -n MyApp -p com.example.app
 ![](static/android_studio_import.png)
 * `kakava -h`
 ```
-usage: kakava [-h] [-p PACKAGE] [-n NAME] destination
+usage: kakava [-h] [-p PACKAGE] [-n NAME] [-t TEMPLATE] destination
 
 positional arguments:
   destination           output directory for the app
@@ -41,6 +41,8 @@ optional arguments:
   -p PACKAGE, --package PACKAGE
                         package name, e.g. com.example.app
   -n NAME, --name NAME  app name, e.g. MyApp
+  -t TEMPLATE, --template TEMPLATE
+                        template directory name in the templates/ dir
 ```
 
 ## TODO (PR welcome)

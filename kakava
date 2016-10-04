@@ -6,7 +6,7 @@ from shutil import copytree, move
 
 
 class AppConfig:
-    def __init__(self, destination, package=None, name=None):
+    def __init__(self, destination, package=None, name=None, template=None):
         self.destination = destination
 
         if package:
@@ -27,6 +27,11 @@ class AppConfig:
 
             self.name = default_name + number
 
+        if template:
+            self.template = template
+        else:
+            self.template = 'default'
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -35,8 +40,10 @@ def parse_args():
     parser.add_argument('-p', '--package',
                         help='package name, e.g. com.example.app')
     parser.add_argument('-n', '--name', help='app name, e.g. MyApp')
+    parser.add_argument('-t', '--template',
+                        help='template directory name in the templates/ dir')
     args = parser.parse_args()
-    return AppConfig(args.destination, args.package, args.name)
+    return AppConfig(args.destination, args.package, args.name, args.template)
 
 
 def path_from_dirs_list(dirs):
@@ -86,7 +93,7 @@ if __name__ == '__main__':
     script_dir_path = script_path[: script_path.rfind(basename(__file__))]
     templates_dir_path = join(script_dir_path, 'templates')
     project_path = join(app_config.destination, app_config.name)
-    default_template_path = join(templates_dir_path, 'default')
+    default_template_path = join(templates_dir_path, app_config.template)
     copytree(default_template_path, project_path)
 
     # Create directories by splitting app_config.package
