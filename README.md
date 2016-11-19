@@ -30,6 +30,10 @@ kakava -d NEW_PROJECT_PATH
 ```
 kakava -d NEW_PROJECT_PATH -n MyApp -p com.example.app
 ```
+* Kotlin Android project
+```
+kakava -d NEW_PROJECT_PATH -n MyApp -p com.example.app -t default-kotlin
+```
 * Open it with AndroidStudio Import project option
 
 ![](static/android_studio_import.png)
