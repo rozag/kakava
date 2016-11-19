@@ -53,8 +53,9 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
  1. Create and configure your desired project setup
  2. Replace package names, class names or whatever you want with the `${variableName}` substitution
  3. Add the `.kakava` extension to all files with such replacements
- 4. Put your new template into `templates/` folder with the desired name (e.g. `my-awesome-template`)
- 5. Smile cause you're awesome :)
+ 4. Reduce your `com/whatever/product` folder hierarchy to a simple `kakavaroot` folder
+ 5. Put your new template into `templates/` folder with the desired name (e.g. `my-awesome-template`)
+ 6. Smile cause you're awesome :)
 
 ## Currently supported params
 * `${packageName}` - the package name for your app (e.g. `com.company.product`)
