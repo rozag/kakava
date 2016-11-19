@@ -48,12 +48,22 @@ optional arguments:
                         template directory name in the templates/ dir
 ```
 
+## How can I add my own template?
+Basically, what kakava does is iterate over all `*.kakava` files in the template and replace each variable substitution with desired value from the CLI params. See [currently supported variables](#currently-supported-params). Therefore to create new template you should:
+ 1) Create and configure your desired project setup
+ 2) Replace package names, class names or whatever you want with the `${variableName}` substitution
+ 3) Add the `.kakava` extension to all files with such replacements
+ 4) Put your new template into `templates/` folder with the desired name (e.g. `my-awesome-template`)
+ 5) Smile cause you're awesome :)
+
+## Currently supported params
+* `${packageName}` - the package name for your app (e.g. `com.company.product`)
+* `${appName}` - your application name (e.g. `MyApp`)
+
 ## TODO (PR welcome)
 * README file for the default template
-* Better custom templates support
+* Better custom templates support (custom CLI params parsing)
 * Kotlin project template
-* Writing custom templates tutorial
-* Currently supported ${variables} list
 
 ## License
 
