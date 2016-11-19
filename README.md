@@ -1,5 +1,5 @@
 # kakava
-Customizable Android app template generator. This tool allows you to generate an empty Android project with default/your own template. Checkout the templates/default/ for more info.
+Customizable Android app template generator. This tool allows you to generate an empty Android project with default/your own template. Checkout `templates/default/` or `templates/default-kotlin/` for more info.
 
 ## Motivations
 I've noticed that I spend ~15 minutes each time, when I need to create and set up a project for a new app or a prototype. Well, need to do a task more than once? Automate it! So, meet kakava!
@@ -48,6 +48,10 @@ optional arguments:
                         template directory name in the templates/ dir
 ```
 
+## Out-of-the-box templates
+* `default` - default template for Java Android app
+* `default-kotlin` - default template for Kotlin Android app
+
 ## How can I add my own template?
 Basically, what kakava does is iterate over all `*.kakava` files in the template and replace each variable substitution with desired value from the CLI params. See [currently supported variables](#currently-supported-params). Therefore to create new template you should:
  1. Create and configure your desired project setup
@@ -62,8 +66,8 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
 
 ## TODO (PR welcome)
 * README file for the default template
+* README file for the default-kotlin template
 * Better custom templates support (custom CLI params parsing)
-* Kotlin project template
 
 ## License
 
