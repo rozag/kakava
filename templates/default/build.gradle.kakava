@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:2.2.2"
+        classpath "com.android.tools.build:gradle:2.3.1"
     }
 }
 
@@ -23,13 +23,13 @@ allprojects {
         buildAppVersion = 0
 
         // Build tools, SDKs, etc.
-        buildTools = "25.0.0"
+        buildTools = "25.0.2"
         minSdk = 15
-        compileSdk = 24
-        targetSdk = 24
+        compileSdk = 25
+        targetSdk = 25
 
         // Libraries versions
-        supportLibraryVersion = "25.0.1"
+        supportLibraryVersion = "25.2.0"
     }
 }
 
