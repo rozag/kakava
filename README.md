@@ -79,7 +79,7 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
 
 ## License
 
-    Copyright 2016 Alexey Mileev
+    Copyright 2017 Alexey Mileev
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
