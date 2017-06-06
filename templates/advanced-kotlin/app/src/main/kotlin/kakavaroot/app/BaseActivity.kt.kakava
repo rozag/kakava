@@ -1,0 +1,58 @@
+package ${packageName}.app
+
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import ${packageName}.R
+
+/**
+ * Simple base class for all activities in the app.
+ * [BaseActivity] finds [Toolbar] by R.id.toolbar id and sets it up.
+ */
+abstract class BaseActivity : AppCompatActivity() {
+
+    /**
+     * id of your activity layout. Return 0 if you don't want to provide the layout.
+     */
+    protected abstract val layoutResourceId: Int
+
+    /**
+     * id of your toolbar title. Return 0 if you don't want to provide the title.
+     */
+    protected abstract val toolbarTitleId: Int
+
+    /**
+     * whether home should be displayed as an "up" affordance.
+     */
+    protected abstract val displayHomeAsUp: Boolean
+
+    /**
+     * whether home button in the corner of [Toolbar] should be enabled
+     */
+    protected abstract val homeButtonEnabled: Boolean
+
+    protected var toolbar: Toolbar? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (layoutResourceId != 0) {
+            setContentView(layoutResourceId)
+        }
+        setUpToolbar()
+    }
+
+    protected fun setUpToolbar() {
+        toolbar = findViewById(R.id.toolbar) as Toolbar
+        if (toolbar != null) {
+            setSupportActionBar(toolbar)
+        }
+
+        if (toolbarTitleId != 0) {
+            setTitle(toolbarTitleId)
+        }
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(displayHomeAsUp)
+        supportActionBar?.setHomeButtonEnabled(homeButtonEnabled)
+    }
+
+}

@@ -142,3 +142,6 @@ fabric.properties
 # *.ipr
 
 util/
+
+### macOS files ###
+*.DS_Store

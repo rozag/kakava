@@ -8,5 +8,7 @@
   "_support_library_version": "25.3.1",
   "_kotlin_version": "1.1.2-4",
   "_junit_version": "4.12",
-  "_espresso_core_version": "2.2.2"
+  "_espresso_core_version": "2.2.2",
+  "_play_services_version": "10.2.6",
+  "_timber_version": "4.3.1"
 }

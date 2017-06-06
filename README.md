@@ -10,7 +10,7 @@ I've noticed that I spend ~15 minutes each time, when I need to create and set u
 ## Download
 Clone the repo:
 ```
-git clone --branch v1.4 git@github.com:rozag/kakava.git YOUR_PATH/kakava
+git clone --branch v1.5 git@github.com:rozag/kakava.git YOUR_PATH/kakava
 ```
 For convenience add it to your PATH. Put it to your `~/.bashrc`:
 ```
@@ -55,6 +55,7 @@ optional arguments:
 ## Out-of-the-box templates
 * `default` - [default template](https://github.com/rozag/kakava/blob/master/templates/default/) for Java Android app
 * `default-kotlin` - [default template for Kotlin](https://github.com/rozag/kakava/blob/master/templates/default-kotlin/) Android app
+* `advanced-kotlin` - [advanced Kotlin template](https://github.com/rozag/kakava/blob/master/templates/advanced-kotlin/)
 
 ## How can I add my own template?
 Basically, what kakava does is iterate over all `*.kakava` files in the template and replace each variable substitution with desired value from the CLI params. See [currently supported variables](#currently-supported-params). Therefore to create new template you should:
@@ -70,9 +71,9 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
 * `${appName}` - your application name (e.g. `MyApp`)
 
 ## TODO (PR welcome)
-* Better custom templates support (custom CLI params parsing)
-* Advanced kotlin project template (advanced-kotlin)
+* Delete README.md files from the app modules
 * Hackathon kotlin project template (hack-kotlin)
+* Custom templates support (custom CLI params parsing)
 
 ## License
 

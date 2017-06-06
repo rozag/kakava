@@ -20,6 +20,7 @@ buildscript {
 
         // Libraries versions
         supportLibraryVersion = "${_support_library_version}"
+        playServicesVersion = "${_play_services_version}"
     }
 
     repositories {
