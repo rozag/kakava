@@ -73,6 +73,8 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
 * README file for the default template
 * README file for the default-kotlin template
 * Better custom templates support (custom CLI params parsing)
+* Advanced kotlin project template (advanced-kotlin)
+* Hackathon kotlin project template (hack-kotlin)
 
 ## License
 
