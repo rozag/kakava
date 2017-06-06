@@ -53,8 +53,8 @@ optional arguments:
 ```
 
 ## Out-of-the-box templates
-* `default` - [default template](https://github.com/rozag/kakava/blob/master/templates/default/README.md) for Java Android app
-* `default-kotlin` - [default template for Kotlin](https://github.com/rozag/kakava/blob/master/templates/default-kotlin/README.md) Android app
+* `default` - [default template](https://github.com/rozag/kakava/blob/master/templates/default/) for Java Android app
+* `default-kotlin` - [default template for Kotlin](https://github.com/rozag/kakava/blob/master/templates/default-kotlin/) Android app
 
 ## How can I add my own template?
 Basically, what kakava does is iterate over all `*.kakava` files in the template and replace each variable substitution with desired value from the CLI params. See [currently supported variables](#currently-supported-params). Therefore to create new template you should:
