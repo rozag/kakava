@@ -71,7 +71,6 @@ Basically, what kakava does is iterate over all `*.kakava` files in the template
 * `${appName}` - your application name (e.g. `MyApp`)
 
 ## TODO (PR welcome)
-* Delete README.md files from the app modules
 * Hackathon kotlin project template (hack-kotlin)
 * Custom templates support (custom CLI params parsing)
 
