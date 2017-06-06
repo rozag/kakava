@@ -10,16 +10,16 @@ buildscript {
         buildAppVersion = 0
 
         // Build tools, SDKs, etc.
-        buildTools = "25.0.3"
-        minSdk = 16
-        compileSdk = 25
-        targetSdk = 25
+        buildTools = "${_build_tools_version}"
+        minSdk = ${_min_sdk}
+        compileSdk = ${_compile_sdk}
+        targetSdk = ${_target_sdk}
 
         // Kotlin version
-        kotlinVersion = "1.1.2-4"
+        kotlinVersion = "${_kotlin_version}"
 
         // Libraries versions
-        supportLibraryVersion = "25.3.1"
+        supportLibraryVersion = "${_support_library_version}"
     }
 
     repositories {
@@ -28,7 +28,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath '${_gradle_classpath}'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
     }
 }
