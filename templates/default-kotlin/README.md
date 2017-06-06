@@ -1,8 +1,8 @@
 # default-kotlin template
 The main purpose of this template is to provide you with an environment which is more comfortable for fast prototypes and experiments than the default one provided by Android Studio. It consists of:
-* `App.kt` - empty Application class
-* `BaseActivity.kt` - convenient abstract parent Activity class
-* `BackArrowActivity.kt` - abstract Activity class with basic "back button" functionality
+* `App.kt` - an empty Application class
+* `BaseActivity.kt` - a convenient abstract parent Activity class
+* `BackArrowActivity.kt` - an abstract Activity class with basic "back button" functionality
 * `MainActivity.kt` - an empty Activity class for the fast start
 
 ## BaseActivity details
