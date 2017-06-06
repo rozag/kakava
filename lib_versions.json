@@ -1,5 +1,5 @@
 {
-  "_gradle_distribution_url": "https\://services.gradle.org/distributions/gradle-3.5-all.zip",
+  "_gradle_distribution_url": "https\\://services.gradle.org/distributions/gradle-3.5-all.zip",
   "_gradle_classpath": "com.android.tools.build:gradle:2.3.2",
   "_build_tools_version": "25.0.3",
   "_min_sdk": "16",

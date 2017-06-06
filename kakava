@@ -92,7 +92,7 @@ def replace_variables_in_file(name, app_cfg):
 
 
 def replace_lib_versions_in_file(name, lib_versions):
-    for flag, version in lib_versions:
+    for flag, version in lib_versions.items():
         replace_word_in_file(name, '${%s}' % flag, version)
 
 
