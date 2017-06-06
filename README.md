@@ -10,7 +10,7 @@ I've noticed that I spend ~15 minutes each time, when I need to create and set u
 ## Download
 Clone the repo:
 ```
-git clone --branch v1.3 git@github.com:rozag/kakava.git YOUR_PATH/kakava
+git clone --branch v1.4 git@github.com:rozag/kakava.git YOUR_PATH/kakava
 ```
 For convenience add it to your PATH. Put it to your `~/.bashrc`:
 ```
