@@ -7,3 +7,5 @@ The aim of this template is to provide ready interfaces for different things (an
 * `ResProvider` - an abstraction for `Resources`. Like `PrefsProvider` it prevents Android dependencies in your code
 
 Moreover, the [Timber](https://github.com/JakeWharton/timber) library with the `ReleaseTree` is already imported in this template.
+
+For more details on `BaseActivity` and `BackArrowActivity` check out [the default-kotlin template](https://github.com/rozag/kakava/tree/master/templates/default-kotlin).
