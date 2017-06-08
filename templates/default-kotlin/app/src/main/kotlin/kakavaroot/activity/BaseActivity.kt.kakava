@@ -42,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected fun setUpToolbar() {
-        toolbar = findViewById(R.id.toolbar) as Toolbar
+        toolbar = findViewById(R.id.toolbar) as Toolbar?
         if (toolbar != null) {
             setSupportActionBar(toolbar)
         }
