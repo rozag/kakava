@@ -1,14 +1,14 @@
 {
   "_gradle_distribution_url": "https\\://services.gradle.org/distributions/gradle-4.1-all.zip",
-  "_gradle_classpath": "com.android.tools.build:gradle:3.0.0",
-  "_build_tools_version": "27.0.0",
+  "_gradle_classpath": "com.android.tools.build:gradle:3.0.1",
+  "_build_tools_version": "27.0.2",
   "_min_sdk": "21",
   "_compile_sdk": "26",
   "_target_sdk": "26",
-  "_support_library_version": "25.3.1",
+  "_support_library_version": "27.0.2",
   "_kotlin_version": "1.1.51",
   "_junit_version": "4.12",
   "_espresso_core_version": "2.2.2",
-  "_play_services_version": "10.2.6",
+  "_play_services_version": "11.8.0",
   "_timber_version": "4.3.1"
 }
