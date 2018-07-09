@@ -73,19 +73,19 @@ android {
 
 dependencies {
     // JUnit testing dependencies
-    testCompile "junit:junit:${_junit_version}"
+    testImplementation "junit:junit:${_junit_version}"
 
     // Android testing dependencies
-    androidTestCompile "junit:junit:${_junit_version}"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:${_espresso_core_version}", {
+    androidTestImplementation "junit:junit:${_junit_version}"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:${_espresso_core_version}", {
         exclude group: "com.android.support", module: "support-annotations"
     })
 
     // Kotlin specific dependencies
-    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
 
     // Android support library
-    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
 
     // Your dependencies go here...
 }
